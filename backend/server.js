@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import colors from "colors";
 import path from "path";
+import cors from "cors";
 
 import connectDB from "./db.js";
 import errorHandler from "./middleware/errorHandler.js";
@@ -24,6 +25,9 @@ app.use(express.static(path.join(__dirname, "/public")));
 // Connect to database
 connectDB();
 
+// Enable cors
+app.use(cors());
+
 // Body parser
 app.use(express.json());
 
@@ -34,9 +38,19 @@ app.use("/api/auth", auth);
 app.use("/api/orders", orders);
 app.use("/api/upload", upload);
 
-app.get("/", (req, res, next) => {
-	res.status(200).send("Success");
-});
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static(path.join(__dirname, "..", "client/build")));
+
+	app.get("*", (req, res) => {
+		res.sendFile(
+			path.resolve(__dirname, "..", "client", "build", "index.html")
+		);
+	});
+} else {
+	app.get("/", (req, res, next) => {
+		res.status(200).send("Api running");
+	});
+}
 
 // Error handler
 app.use(errorHandler);
