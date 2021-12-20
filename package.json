@@ -1,0 +1,20 @@
+{
+	"name": "shoes-genius",
+	"version": "1.0.0",
+	"description": "",
+	"main": "/backend/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "npm start --backend"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/omerta-web-master/e-commerce-platform.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/omerta-web-master/e-commerce-platform/issues"
+	},
+	"homepage": "https://github.com/omerta-web-master/e-commerce-platform#readme"
+}
