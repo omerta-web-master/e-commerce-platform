@@ -5,7 +5,7 @@
 	"main": "/backend/index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "npm start --backend",
+		"start": "npm start --prefix backend",
 		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client && npm install --prefix backend"
 	},
 	"repository": {
