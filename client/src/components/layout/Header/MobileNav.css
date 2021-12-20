@@ -1,0 +1,9 @@
+.mobile_nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	background-color: white;
+	padding: 1rem 0px;
+}

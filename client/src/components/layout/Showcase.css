@@ -1,0 +1,34 @@
+.showcase {
+	width: 100%;
+	height: 95vh;
+	display: flex;
+	gap: 1rem;
+}
+
+.img1 {
+	background: url("../../images/showcaseNew1.jpg") no-repeat center center/cover;
+}
+.img2 {
+	background: url("../../images/showcaseNew2.jpg") no-repeat center center/cover;
+}
+.img3 {
+	background: url("../../images/showcaseNew3.jpg") no-repeat center center/cover;
+}
+.img4 {
+	background: url("../../images/showcaseNew4.jpg") no-repeat center center/cover;
+}
+
+.overlay {
+	position: relative;
+}
+
+.overlay::before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background-color: rgba(0, 0, 0, 0.4);
+}

@@ -1,0 +1,7 @@
+.products_table {
+}
+
+.products_table th,
+.products_table td {
+	padding: 0.7rem 1.5rem;
+}
