@@ -1,5 +1,6 @@
 # e-commerce-platform
 React online shop</br>
+Check live project https://shoes-genius.herokuapp.com/
 
 ![img](https://i.ibb.co/YfhHgGJ/shoes-Genius1.png)
 
