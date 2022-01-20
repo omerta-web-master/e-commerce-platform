@@ -1,4 +1,5 @@
 import React from "react";
+import { BASE_URL } from "../../services/api/base";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { BsTrashFill } from "react-icons/bs";
@@ -16,7 +17,7 @@ const CartItem = ({ product, handleRemoveItem }) => {
 	return (
 		<div className='flex shadow-md items-center mb-1 justify-between gap-5 bg-white pr-4'>
 			<div style={{ maxWidth: "100px" }}>
-				<img className='w-full' src={img} alt='' />
+				<img className='w-full' src={BASE_URL + `/${img}`} alt='' />
 			</div>
 			<Link to={`/products/${_id}`} className='w-40 font-light text-center'>
 				{name}
