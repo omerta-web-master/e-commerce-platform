@@ -38,19 +38,9 @@ app.use("/api/auth", auth);
 app.use("/api/orders", orders);
 app.use("/api/upload", upload);
 
-if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "..", "client/build")));
-
-	app.get("*", (req, res) => {
-		res.sendFile(
-			path.resolve(__dirname, "..", "client", "build", "index.html")
-		);
-	});
-} else {
-	app.get("/", (req, res, next) => {
-		res.status(200).send("Api running");
-	});
-}
+app.get("/", (req, res, next) => {
+	res.status(200).send("Api running");
+});
 
 // Error handler
 app.use(errorHandler);
