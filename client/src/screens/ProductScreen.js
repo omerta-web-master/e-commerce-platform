@@ -7,6 +7,7 @@ import AddToCartForm from "../components/products/AddToCartForm";
 import ProductInfo from "../components/products/ProductInfo";
 import { getProduct } from "../actions/productActions";
 import { PRODUCT_DETAILS_RESET } from "../reducers/products/types";
+import { BASE_URL } from "../services/api/base";
 
 const ProductScreen = () => {
 	const { id } = useParams();
@@ -44,7 +45,7 @@ const ProductScreen = () => {
 		<Container>
 			<div className='flex md:flex-row flex-col gap-5'>
 				<div className='flex-1'>
-					<img className='w-full' src={img} alt='' />
+					<img className='w-full' src={BASE_URL + `/${img}`} alt='' />
 				</div>
 				<div className='flex-1 p-5'>
 					<ProductInfo product={product} />

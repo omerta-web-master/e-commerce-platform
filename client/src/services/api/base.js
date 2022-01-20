@@ -1,2 +1,4 @@
 export const BASE_URL =
-	process.env.NODE_ENV === "production" ? "hello" : "http://localhost:5000";
+	process.env.NODE_ENV === "production"
+		? "https://shoes-genius-api.herokuapp.com"
+		: "http://localhost:5000";
