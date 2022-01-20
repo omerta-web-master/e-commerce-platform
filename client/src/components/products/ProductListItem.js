@@ -1,6 +1,7 @@
 import React from "react";
 import Rating from "./Rating";
 import { useNavigate } from "react-router";
+import { BASE_URL } from "../../services/api/base";
 
 const ProductListItem = ({ product }) => {
 	const { name, price, rating, img, _id } = product;
@@ -17,7 +18,7 @@ const ProductListItem = ({ product }) => {
 		>
 			<div className='max-w-sm bg-white shadow-lg'>
 				<div>
-					<img src={img} alt='' />
+					<img src={BASE_URL + `/${img}`} alt='' />
 				</div>
 				<div className='p-5'>
 					<h3 className='text-sm font-semibold'>{name}</h3>

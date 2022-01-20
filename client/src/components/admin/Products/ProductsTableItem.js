@@ -1,4 +1,5 @@
 import React from "react";
+import { BASE_URL } from "../../../services/api/base";
 import useDeleteProject from "./useDeleteProject";
 import { AiFillEdit } from "react-icons/ai";
 import { BsFillTrashFill } from "react-icons/bs";
@@ -15,7 +16,7 @@ const ProductsTableItem = ({ product }) => {
 	return (
 		<tr>
 			<td>
-				<img src={img} alt='' style={{ maxWidth: "50px" }} />
+				<img src={BASE_URL + `/${img}`} alt='' style={{ maxWidth: "50px" }} />
 			</td>
 			<td>{name}</td>
 			<td>{price}</td>
