@@ -38,7 +38,7 @@ app.use("/api/auth", auth);
 app.use("/api/orders", orders);
 app.use("/api/upload", upload);
 
-app.get("/", (req, res, next) => {
+app.get("/", (req, res) => {
 	res.status(200).send("Api running");
 });
 
