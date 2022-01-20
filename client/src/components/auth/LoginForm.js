@@ -32,6 +32,11 @@ const LoginForm = () => {
 		dispatch(login({ email, password }));
 	};
 
+	const loginDemoAccount = () => {
+		const demoUser = { email: "dumi@gmail.com", password: "123456" };
+		dispatch(login(demoUser));
+	};
+
 	return (
 		<form className='w-full mx-auto max-w-sm' onSubmit={handleSubmit}>
 			<Alert />
@@ -65,6 +70,13 @@ const LoginForm = () => {
 			>
 				Login
 			</Button>
+			<button
+				onClick={loginDemoAccount}
+				type='button'
+				className='text-blue-700 underline py-10'
+			>
+				Login in demo account
+			</button>
 		</form>
 	);
 };

@@ -1,6 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../utilities/Button";
 import Input from "../utilities/Input";
+import { register } from "../../actions/authActions";
+import Alert from "../utilities/Alert";
+import setAlert from "../../actions/alertActions";
+import { CLEAR_ERROR } from "../../reducers/auth/type";
+import { useNavigate } from "react-router";
 
 const RegisterForm = () => {
 	const nameInput = useRef();
@@ -8,15 +14,41 @@ const RegisterForm = () => {
 	const passwordInput = useRef();
 	const password2Input = useRef();
 
+	const { loading, error, isAuthenticated } = useSelector(state => state.auth);
+
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (error) {
+			dispatch({ type: CLEAR_ERROR });
+			dispatch(setAlert(error, "danger"));
+		}
+	}, [error, dispatch]);
+
+	useEffect(() => {
+		if (isAuthenticated) {
+			navigate("/");
+		}
+	}, [isAuthenticated, navigate]);
+
 	const handleSubmit = e => {
 		e.preventDefault();
+		console.log("Click");
+		const name = nameInput.current.value;
+		const email = emailInput.current.value;
+		const password = passwordInput.current.value;
 
-		console.log(emailInput.current.value);
-		console.log(passwordInput.current.value);
+		if (name.trim() === "" || email.trim() === "" || password.trim() === "") {
+			return dispatch(setAlert("Please fill out all the fields", "danger"));
+		}
+
+		dispatch(register({ name, email, password }));
 	};
 
 	return (
 		<form className='w-full mx-auto max-w-sm' onSubmit={handleSubmit}>
+			<Alert />
 			<div>
 				<label className='block p-2 font-light text-xl' htmlFor='name'>
 					Name

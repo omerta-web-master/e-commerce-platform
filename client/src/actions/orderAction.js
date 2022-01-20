@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../services/api/base";
 import {
 	PLACE_ORDER_REQUEST,
 	PLACE_ORDER_FAIL,
@@ -25,7 +26,7 @@ export const placeOrder = order => async dispatch => {
 	};
 	try {
 		dispatch({ type: PLACE_ORDER_REQUEST });
-		const res = await axios.post("/api/orders", order, config);
+		const res = await axios.post(BASE_URL + "/api/orders", order, config);
 		dispatch({ type: PLACE_ORDER_SUCCESS, payload: res.data.data });
 		setTimeout(() => {
 			dispatch({ type: PLACE_ORDER_RESET });
@@ -43,7 +44,7 @@ export const placeOrder = order => async dispatch => {
 export const getOrderDetails = id => async dispatch => {
 	dispatch({ type: GET_ORDER_DETAILS_REQUEST });
 	try {
-		const res = await axios.get(`/api/orders/${id}`);
+		const res = await axios.get(BASE_URL + `/api/orders/${id}`);
 		dispatch({ type: GET_ORDER_DETAILS_SUCCESS, payload: res.data.data });
 	} catch (error) {
 		dispatch({
@@ -60,9 +61,9 @@ export const getOrders = id => async dispatch => {
 	try {
 		dispatch({ type: GET_ORDERS_REQUEST });
 		if (id) {
-			res = await axios.get(`/api/users/${id}/orders`);
+			res = await axios.get(BASE_URL + `/api/users/${id}/orders`);
 		} else {
-			res = await axios.get(`/api/orders`);
+			res = await axios.get(BASE_URL + `/api/orders`);
 		}
 
 		dispatch({ type: GET_ORDERS_SUCCESS, payload: res.data.data });
@@ -84,8 +85,8 @@ export const payOrder = (orderId, paymentResult) => async dispatch => {
 	};
 	dispatch({ type: PAY_ORDER_REQUEST });
 	try {
-		const res = await axios.post(
-			`/api/orders/${orderId}/pay`,
+		await axios.post(
+			BASE_URL + `/api/orders/${orderId}/pay`,
 			paymentResult,
 			config
 		);
@@ -107,7 +108,7 @@ export const updateOrder = (id, data) => async dispatch => {
 		},
 	};
 	try {
-		const res = await axios.put(`/api/orders/${id}`, data, config);
+		await axios.put(BASE_URL + `/api/orders/${id}`, data, config);
 		dispatch({ type: UPDATE_ORDER_SUCCESS });
 	} catch (error) {
 		dispatch({

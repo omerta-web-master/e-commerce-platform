@@ -1,5 +1,6 @@
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
+import { BASE_URL } from "../services/api/base";
 import {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
@@ -28,7 +29,7 @@ const loadUser = () => async dispatch => {
 	setAuthToken(token);
 	dispatch({ type: LOAD_USER_REQUEST });
 	try {
-		const res = await axios.post("/api/auth/me", { token }, config);
+		const res = await axios.post(BASE_URL + "/api/auth/me", { token }, config);
 		dispatch({ type: LOAD_USER_SUCCESS, payload: res.data.data });
 	} catch (error) {
 		dispatch({
@@ -47,7 +48,11 @@ export const login = inputValues => async dispatch => {
 		},
 	};
 	try {
-		const res = await axios.post("/api/auth/login", inputValues, config);
+		const res = await axios.post(
+			BASE_URL + "/api/auth/login",
+			inputValues,
+			config
+		);
 		// Set the token in global headers
 		setAuthToken(res.data.token);
 		dispatch({ type: LOGIN_SUCCESS, payload: res.data });
@@ -62,13 +67,18 @@ export const login = inputValues => async dispatch => {
 };
 
 export const register = inputValues => async dispatch => {
+	console.log("Register");
 	const config = {
 		headers: {
 			"Content-type": "application/json",
 		},
 	};
 	try {
-		const res = await axios.post("/api/auth/register", inputValues, config);
+		const res = await axios.post(
+			BASE_URL + "/api/auth/register",
+			inputValues,
+			config
+		);
 		// Set the token in global headers
 		setAuthToken(res.data.token);
 		dispatch({ type: REGISTER_SUCCESS, payload: res.data });
